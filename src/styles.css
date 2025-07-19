@@ -1,1 +1,214 @@
-/* You can add global styles to this file, and also import other style files */
+/* GLOBAL BASE STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #e0f7ff;
+  height: 100vh;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  overflow-x: hidden;
+}
+
+h2, h3, h4, p, span, div {
+  font-weight: bold;
+}
+
+a {
+  color: #00ccff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* TOP SECTION */
+.top {
+  height: 40vh;
+  background: url('/assets/img/counter-bg.jpg') center/cover no-repeat;
+  position: relative;
+  filter: brightness(0.9);
+}
+
+.budget {
+  position: absolute;
+  width: 380px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(12px);
+  background: rgba(173, 216, 230, 0.05);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 0 30px rgba(135, 206, 250, 0.3);
+  text-align: center;
+  color: #87cefa;
+}
+
+.budget__title {
+  font-size: 20px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.budget__value {
+  font-size: 48px;
+  text-shadow: 0 0 12px #87cefa;
+  margin-bottom: 25px;
+}
+
+.budget__income,
+.budget__expenses {
+  margin: 10px 0;
+  background: rgba(135, 206, 250, 0.1);
+  padding: 14px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+
+/* FORM SECTION */
+.add {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.add__container {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.add__type,
+.add__description,
+.add__value {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(135, 206, 250, 0.5);
+  color: #fff;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  backdrop-filter: blur(5px);
+  outline: none;
+  transition: 0.3s ease;
+  font-weight: bold;
+}
+
+.add__type {
+  width: 60px;
+}
+
+.add__description {
+  width: 300px;
+}
+
+.add__value {
+  width: 120px;
+}
+
+.add__btn {
+  background: #87cefa;
+  color: #0f2027;
+  border: none;
+  font-size: 20px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 0 12px #87cefa;
+}
+
+.add__btn:hover {
+  background: #b2e9ff;
+  box-shadow: 0 0 18px #87cefa;
+}
+
+/* CONTAINER SECTION */
+.container {
+  max-width: 1000px;
+  margin: 50px auto;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.income,
+.expenses {
+  flex: 1;
+  min-width: 300px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 15px rgba(135, 206, 250, 0.2);
+}
+
+/* LIST ITEMS */
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.item__description {
+  flex: 1;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.item__value {
+  color: #00e0ff;
+}
+
+.item__percentage {
+  color: #ff4081;
+  font-size: 12px;
+  background: rgba(255, 64, 129, 0.15);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.item__delete--btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: none;
+}
+
+.item:hover .item__delete--btn {
+  display: inline;
+}
+
+/* UNPAID ITEMS */
+.unpaid {
+  background-color: rgba(255, 64, 129, 0.1);
+  color: #ff4081;
+}
+
+.unpaid .item__percentage {
+  box-shadow: 0 2px 6px rgba(255, 64, 129, 0.3);
+}
+
+/* HEADINGS */
+h2 {
+  color: #87cefa;
+  font-size: 18px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px rgba(135, 206, 250, 0.5);
+}
