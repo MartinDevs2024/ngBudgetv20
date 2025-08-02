@@ -31,7 +31,9 @@ a:hover {
 /* TOP SECTION */
 .top {
   height: 40vh;
-  background: url('/assets/img/counter-bg.jpg') center/cover no-repeat;
+  /* background: url('/assets/img/counter-bg.jpg') center/cover no-repeat; */
+  background:url('/images/bg-ground-money.jpg') center/cover no-repeat;
+  background-size: cover;
   position: relative;
   filter: brightness(0.9);
 }
