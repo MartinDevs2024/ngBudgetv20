@@ -31,7 +31,6 @@ a:hover {
 /* TOP SECTION */
 .top {
   height: 40vh;
-  /* background: url('/assets/img/counter-bg.jpg') center/cover no-repeat; */
   background:url('/images/bg-ground-money.jpg') center/cover no-repeat;
   background-size: cover;
   position: relative;
@@ -74,6 +73,56 @@ a:hover {
   display: flex;
   justify-content: space-between;
   color: #fff;
+}
+
+/* BUDGET ACTION BUTTONS */
+.budget__actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn-budget {
+  background: rgba(135, 206, 250, 0.15);
+  border: 1px solid rgba(135, 206, 250, 0.5);
+  color: #87cefa;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-budget:hover {
+  background: rgba(135, 206, 250, 0.3);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(135, 206, 250, 0.5);
+}
+
+.btn-budget.reset {
+  color: #ff7675;
+  border-color: #ff7675;
+}
+
+.btn-budget.reset:hover {
+  background: rgba(255, 118, 117, 0.2);
+  box-shadow: 0 0 10px rgba(255, 118, 117, 0.5);
+}
+
+.btn-budget.update {
+  color: #00e0ff;
+  border-color: #00e0ff;
+}
+
+.btn-budget.update:hover {
+  background: rgba(0, 224, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
 }
 
 /* FORM SECTION */
@@ -214,3 +263,198 @@ h2 {
   text-transform: uppercase;
   text-shadow: 0 0 6px rgba(135, 206, 250, 0.5);
 }
+
+.budget__title {
+  font-size: 14px;  /* smaller */
+  margin-bottom: 8px;
+}
+
+.budget__value {
+  font-size: 28px; /* smaller */
+  margin-bottom: 15px;
+}
+
+.budget__income,
+.budget__expenses {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.budget__income--text i,
+.budget__expenses--text i {
+  font-size: 14px; /* smaller icons */
+}
+
+.budget__income--value,
+.budget__expenses--value,
+.budget__expenses--percentage {
+  font-size: 14px;
+}
+
+.budget__expenses {
+  position: relative;
+  background: rgba(255, 64, 129, 0.1);
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 64, 129, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ff4081;
+  font-weight: bold;
+}
+
+.budget__expenses--text {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.budget__expenses--text i {
+  font-size: 20px;
+  color: #ff2e6e; /* brighter red */
+}
+
+.right {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.budget__expenses--value {
+  font-size: 18px;
+  color: #ff1a75;
+  text-shadow: 0 0 6px rgba(255, 26, 117, 0.7);
+}
+
+.budget__expenses--percentage {
+  font-size: 14px;
+  background-color: #ff1a75;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(255, 26, 117, 0.7);
+  min-width: 45px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.budget__expenses {
+  position: relative;
+  background: rgba(255, 64, 129, 0.1);
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 64, 129, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ff4081;
+  font-weight: bold;
+}
+
+.budget__expenses--text {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.budget__expenses--text i {
+  font-size: 22px;            /* bigger icon */
+  color: #ff2e6e;             /* bright pink/red */
+  text-shadow: 0 0 6px rgba(255, 26, 117, 0.8);
+  transition: color 0.3s ease;
+}
+
+.budget__expenses--text i:hover {
+  color: #ff6699;             /* lighter pink on hover */
+  cursor: default;
+}
+
+.right {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.budget__expenses--value {
+  font-size: 18px;
+  color: #ff1a75;
+  text-shadow: 0 0 6px rgba(255, 26, 117, 0.7);
+}
+
+.budget__expenses--percentage {
+  font-size: 14px;
+  background-color: #ff1a75;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(255, 26, 117, 0.7);
+  min-width: 45px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.budget__controls {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.budget__controls button {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  border: none;
+  color: #0f2027;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 242, 254, 0.6);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.budget__controls button i {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.budget__controls button:hover {
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  box-shadow: 0 6px 16px rgba(0, 242, 254, 0.9);
+}
+
+.budget__controls button:hover i {
+  transform: rotate(20deg);
+}
+
+/* Different colors for reset and update */
+
+.reset-btn {
+  background: linear-gradient(135deg, #ff6a6a 0%, #ff3b3b 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 59, 59, 0.6);
+}
+
+.reset-btn:hover {
+  background: linear-gradient(135deg, #ff3b3b 0%, #ff6a6a 100%);
+  box-shadow: 0 6px 16px rgba(255, 59, 59, 0.9);
+}
+
+.update-btn {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: #0f2027;
+  box-shadow: 0 4px 12px rgba(0, 242, 254, 0.6);
+}
+
+.update-btn:hover {
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  box-shadow: 0 6px 16px rgba(0, 242, 254, 0.9);
+}
+
+

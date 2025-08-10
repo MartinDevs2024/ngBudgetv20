@@ -1,24 +1,47 @@
 <div class="top">
   <div class="budget">
     <div class="budget__title">
+      <i class="fas fa-wallet"></i>
       Available Budget in <span class="budget__title--month">September</span>:
     </div>
-    <div class="budget__value">{{ budget.budget | currency:'USD':'symbol':'1.2-2' }}</div>
+    <div class="budget__value">
+      {{ budget().budget | currency:'USD':'symbol':'1.2-2' }}
+    </div>
 
     <div class="budget__income clearfix">
-      <div class="budget__income--text">Income</div>
+      <div class="budget__income--text">
+        <i class="fas fa-arrow-up text-success"></i> Income
+      </div>
       <div class="right">
-        <div class="budget__income--value">{{ budget.totalInc | currency:'USD':'symbol':'1.2-2' }}</div>
+        <div class="budget__income--value">
+          {{ budget().totalInc | currency:'USD':'symbol':'1.2-2' }}
+        </div>
         <div class="budget__income--percentage">&nbsp;</div>
       </div>
     </div>
 
     <div class="budget__expenses clearfix">
-      <div class="budget__expenses--text">Expenses</div>
-      <div class="right clearfix">
-        <div class="budget__expenses--value">{{ budget.totalExp | currency }}</div>
-        <div class="budget__expenses--percentage">{{ budget.percentage }}%</div>
+      <div class="budget__expenses--text">
+        <i class="fas fa-arrow-down text-danger"></i> Expenses
       </div>
+      <div class="right clearfix">
+        <div class="budget__expenses--value">
+          {{ budget().totalExp | currency }}
+        </div>
+        <div class="budget__expenses--percentage">
+          {{ budget().percentage }}%
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ Control Buttons -->
+    <div class="budget__controls">
+      <button (click)="resetBudget()" class="reset-btn" title="Reset Budget">
+        <i class="fas fa-undo-alt"></i> Reset
+      </button>
+      <button (click)="updateBudget()" class="update-btn" title="Update Budget">
+        <i class="fas fa-sync-alt"></i> Update
+      </button>
     </div>
   </div>
 </div>
@@ -35,28 +58,34 @@
         type="text"
         class="add__description"
         placeholder="Add description"
-        (keypress)="onKeyPress($event)">
+        (keypress)="onKeyPress($event)"
+      >
       <input
         [(ngModel)]="inputValue"
         type="number"
         class="add__value"
         placeholder="Value"
-        (keypress)="onKeyPress($event)">
-      <button (click)="onAddItem()" class="add__btn"><i class="fas fa-check"></i></button>
+        (keypress)="onKeyPress($event)"
+      >
+      <button (click)="onAddItem()" class="add__btn" title="Add Item">
+        <i class="fas fa-check"></i>
+      </button>
     </div>
   </div>
 
   <div class="container clearfix">
     <div class="income">
-      <h2 class="income__title">Income</h2>
+      <h2 class="income__title">
+        <i class="fas fa-arrow-up text-success"></i> Income
+      </h2>
       <div class="income__list">
-        <div *ngFor="let item of incomeItems" class="item clearfix" id="income-{{item.id}}">
+        <div *ngFor="let item of incomeItems()" class="item clearfix" id="income-{{item.id}}">
           <div class="item__description">{{ item.description }}</div>
           <div class="right clearfix">
             <div class="item__value">{{ item.value | currency }}</div>
             <div class="item__delete">
-              <button (click)="onDeleteItem('inc', item.id)" class="item__delete--btn">
-                <i class="fas fa-times-circle"></i>
+              <button (click)="onDeleteItem('inc', item.id)" class="item__delete--btn" title="Delete">
+                <i class="fas fa-times-circle text-danger"></i>
               </button>
             </div>
           </div>
@@ -65,16 +94,18 @@
     </div>
 
     <div class="expenses">
-      <h2 class="expenses__title">Expenses</h2>
+      <h2 class="expenses__title">
+        <i class="fas fa-arrow-down text-danger"></i> Expenses
+      </h2>
       <div class="expenses__list">
-        <div *ngFor="let item of expenseItems" class="item clearfix" id="expense-{{item.id}}">
+        <div *ngFor="let item of expenseItems()" class="item clearfix" id="expense-{{item.id}}">
           <div class="item__description">{{ item.description }}</div>
           <div class="right clearfix">
             <div class="item__value">{{ item.value | currency }}</div>
-            <div class="item__percentage">{{ budget.percentage }}%</div>
+            <div class="item__percentage">{{ budget().percentage }}%</div>
             <div class="item__delete">
-              <button (click)="onDeleteItem('exp', item.id)" class="item__delete--btn">
-                <i class="fas fa-times-circle"></i>
+              <button (click)="onDeleteItem('exp', item.id)" class="item__delete--btn" title="Delete">
+                <i class="fas fa-times-circle text-danger"></i>
               </button>
             </div>
           </div>

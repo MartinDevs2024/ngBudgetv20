@@ -1,39 +1,53 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { BudgetService } from '../../_services/budget.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
+import { BudgetItem } from '../../_models/budgetItem';
 
 @Component({
   selector: 'app-budget',
-  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './budget.html',
   styleUrl: './budget.css'
 })
 export class Budget {
-  incomeItems: any[] = [];
-  expenseItems: any[] = [];
-  budget: any;
-  inputType: 'inc' | 'exp' = 'inc';
+   inputType: 'inc' | 'exp' = 'inc';
   inputDescription = '';
   inputValue: number | null = null;
 
+
+  // Strongly typed signals
+  incomeItems = signal<BudgetItem[]>([]);
+  expenseItems = signal<BudgetItem[]>([]);
+  budget = signal({
+    budget: 0,
+    totalInc: 0,
+    totalExp: 0,
+    percentage: -1
+  });
   constructor(private budgetService: BudgetService) {
-    this.resetBudget();
+    //Initialize the budget and items with signals
+    this.budget.set(this.budgetService.getBudget());
+
+    //Effect will auto-run
+    effect(() => {
+       //Recalculate budget when income or expense items change
+       const _ = [this.incomeItems(), this.expenseItems()];
+       this.budgetService.calculateBudget();
+       this.budget.set(this.budgetService.getBudget());
+    });
   }
 
-  ngOnInit() {
-    this.budget = this.budgetService.getBudget();
-  }
+
 
   // Function to add item when clicking or pressing Enter
   onAddItem() {
     if (this.inputDescription && this.inputValue !== null && this.inputValue > 0) {
       const newItem = this.budgetService.addItem(this.inputType, this.inputDescription, this.inputValue);
       if (this.inputType === 'inc') {
-        this.incomeItems.push(newItem);
+        this.incomeItems.update(items => [...items, newItem]);
       } else {
-        this.expenseItems.push(newItem);
+        this.expenseItems.update(items => [...items, newItem]);
       }
       this.updateBudget();
       this.clearFields();
@@ -44,9 +58,9 @@ export class Budget {
   onDeleteItem(type: 'inc' | 'exp', id: number) {
     this.budgetService.deleteItem(type, id);
     if (type === 'inc') {
-      this.incomeItems = this.incomeItems.filter(item => item.id !== id);
+      this.incomeItems.update(items => items.filter(item => item.id !== id));
     } else {
-      this.expenseItems = this.expenseItems.filter(item => item.id !== id);
+      this.expenseItems.update(items => items.filter(item => item.id !== id));
     }
     this.updateBudget();
   }
@@ -59,9 +73,9 @@ export class Budget {
   }
 
   // Function to update the budget after item changes
-  private updateBudget() {
+  updateBudget() {
     this.budgetService.calculateBudget();
-    this.budget = this.budgetService.getBudget();
+    this.budget.set(this.budgetService.getBudget());
   }
 
   // Function to clear input fields after adding an item
@@ -71,12 +85,16 @@ export class Budget {
   }
 
   // Function to reset the budget to the initial state
-  private resetBudget() {
-    this.budget = {
+  resetBudget() {
+    this.incomeItems.set([]);
+    this.expenseItems.set([]);
+    this.budget.set({
       budget: 0,
       totalInc: 0,
       totalExp: 0,
       percentage: -1
-    };
+    });
   }
 }
+
+
